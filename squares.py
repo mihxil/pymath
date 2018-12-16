@@ -13,23 +13,21 @@ def number(digits: list):
     return result
 
 
-def is_square(i):
-    if i == 1:
-        return True
-    x = i // 2
-    seen = {x}
-    while x * x != i:
-        x = (x + (i // x)) // 2
-        if x in seen: return False
-        seen.add(x)
-    return True
+# Newton's method works perfectly well on integers:
+def isqrt(n):
+    x = n
+    y = (x + 1) // 2
+    while y < x:
+        x = y
+        y = (x + n // x) // 2
+    return x
 
 
 for i in range(1, 10):
     print(i)
     for perm in list(itertools.permutations(range(1, i + 1))):
         n = number(list(perm))
-        if is_square(n):
-            root = int(math.sqrt(n))
-            print("\t" + str(n) + "\t=" + str(root) + "*" + str(root))
+        isq = isqrt(n)
+        if isq ** 2 == n:
+            print("\t" + str(n) + "\t=" + str(isq) + "*" + str(isq))
 
