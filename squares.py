@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import itertools
+import math
+
 
 def number(digits: list):
     result = 0
@@ -28,5 +30,6 @@ for i in range(1, 10):
     for perm in list(itertools.permutations(range(1, i + 1))):
         n = number(list(perm))
         if is_square(n):
-            print("\t" + str(n))
+            root = int(math.sqrt(n))
+            print("\t" + str(n) + "\t=" + str(root) + "*" + str(root))
 
