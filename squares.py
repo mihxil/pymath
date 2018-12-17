@@ -6,9 +6,9 @@ import sys
 
 # works in any base, for bases > 10 it may become a bit slow..
 if len(sys.argv) > 1:
-    base=int(sys.argv[1])
+    base = int(sys.argv[1])
 else:
-    base=10
+    base = 10
 
 print("Showing in base " + str(base))
 
@@ -32,11 +32,11 @@ def isqrt(n):
     return x
 
 
-def number_to_base(number: int):
-    digits='0123456789abcdefghijklmnopqrstuvwxyz'
+def number_to_base(n: int):
+    digits = "0123456789abcdefghijklmnopqrstuvwxyz"
     result = ""
-    while number > 0:
-        number,idx = divmod(number, base)
+    while n > 0:
+        n, idx = divmod(n, base)
         result = digits[idx] + result
     return result
 
@@ -45,7 +45,11 @@ for i in range(1, base):
     print(number_to_base(i))
     for perm in list(itertools.permutations(range(1, i + 1))):
         n = number(list(perm))
-        isq = isqrt(n)
-        if isq ** 2 == n:
-            print("\t" + number_to_base(n) + "\t= " + number_to_base(isq) + "²")
+        iroot = isqrt(n)
+        if iroot ** 2 == n:
+            if base != 10:
+                print("\t%s (%d)\t= %s² (%d²)" % (number_to_base(n), n,  number_to_base(iroot), iroot))
+            else:
+                print("\t%d\t= %d²" %  (n, iroot))
+
 
