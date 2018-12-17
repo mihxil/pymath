@@ -12,6 +12,7 @@ else:
 
 print("Showing in base " + str(base))
 
+
 def number(digits: list):
     result = 0
     pow = 1
@@ -32,19 +33,19 @@ def isqrt(n):
 
 
 def number_to_base(number: int):
-    alphabet='0123456789abcdefghijklmnopqrstuvwxyz'
+    digits='0123456789abcdefghijklmnopqrstuvwxyz'
     result = ""
     while number > 0:
         number,idx = divmod(number, base)
-        result = alphabet[idx] + result
+        result = digits[idx] + result
     return result
 
 
 for i in range(1, base):
-    print(i)
+    print(number_to_base(i))
     for perm in list(itertools.permutations(range(1, i + 1))):
         n = number(list(perm))
         isq = isqrt(n)
         if isq ** 2 == n:
-            print("\t" + number_to_base(n) + "\t=" + number_to_base(isq) + "*" + number_to_base(isq))
+            print("\t" + number_to_base(n) + "\t= " + number_to_base(isq) + "²")
 
