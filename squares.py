@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 
 import itertools
+import sys
+
 
 # works in any base, for bases > 10 it may become a bit slow..
-base=10
+if len(sys.argv) > 1:
+    base=int(sys.argv[1])
+else:
+    base=10
+
+print("Showing in base " + str(base))
 
 def number(digits: list):
     result = 0
