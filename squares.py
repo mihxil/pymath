@@ -2,13 +2,15 @@
 
 import itertools
 
+# works in any base, for bases > 10 it may become a bit slow..
+base=10
 
 def number(digits: list):
     result = 0
     pow = 1
     for d in reversed(digits):
         result += d * pow
-        pow = pow * 10
+        pow *= base
     return result
 
 
@@ -22,11 +24,20 @@ def isqrt(n):
     return x
 
 
-for i in range(1, 10):
+def number_to_base(number: int):
+    alphabet='0123456789abcdefghijklmnopqrstuvwxyz'
+    result = ""
+    while number > 0:
+        number,idx = divmod(number, base)
+        result = alphabet[idx] + result
+    return result
+
+
+for i in range(1, base):
     print(i)
     for perm in list(itertools.permutations(range(1, i + 1))):
         n = number(list(perm))
         isq = isqrt(n)
         if isq ** 2 == n:
-            print("\t" + str(n) + "\t=" + str(isq) + "*" + str(isq))
+            print("\t" + number_to_base(n) + "\t=" + number_to_base(isq) + "*" + number_to_base(isq))
 
